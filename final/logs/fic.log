@@ -1,0 +1,13 @@
+[2025-12-18 03:19:52] Baseline created: /f/infosec/final/db/baseline.sha256
+[2025-12-18 03:19:52] List used: /f/infosec/final/critical_files.txt
+[2025-12-18 03:20:04] Scan complete. Comparing with baseline...
+[2025-12-18 03:20:04] OK: No changes detected.
+[2025-12-18 03:20:18] Scan complete. Comparing with baseline...
+[2025-12-18 03:20:19] MODIFIED: /f/infosec/final/test/passwords.txt
+[2025-12-18 03:20:19] ALERT: Detected 1 change(s). See log: /f/infosec/final/logs/fic.log
+[2025-12-18 03:20:27] Scan complete. Comparing with baseline...
+[2025-12-18 03:20:28] OK: No changes detected.
+[2025-12-18 03:22:13] Scan complete. Comparing with baseline...
+[2025-12-18 03:22:13] MODIFIED: /f/infosec/final/fic.sh
+[2025-12-18 03:22:14] MODIFIED: /f/infosec/final/README.md
+[2025-12-18 03:22:14] ALERT: Detected 2 change(s). See log: /f/infosec/final/logs/fic.log

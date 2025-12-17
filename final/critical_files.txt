@@ -1,0 +1,11 @@
+# Put one file per line. Lines starting with # are comments.
+# Default is project-local and works on Windows/Linux.
+# Add absolute paths if you want it to work from any directory.
+
+# This script:
+/f/infosec/final/fic.sh
+
+# (Optional) Track this list itself:
+/f/infosec/final/critical_files.txt
+/f/infosec/final/README.md
+/f/infosec/final/test/passwords.txt

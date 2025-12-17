@@ -1,0 +1,10 @@
+# One file per line.
+# Lines starting with # are comments (ignored).
+# This default list is project-local, so it works on Windows/Linux.
+# You can add absolute paths (or relative ones if you prefer).
+
+# This script file:
+F:\infosec\final_py\fic.py
+
+# Optional: track this list file too:
+F:\infosec\final_py\critical_files.txt

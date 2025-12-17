@@ -1,0 +1,14 @@
+[2025-12-18 03:29:00] Created default list: F:\infosec\final_py\critical_files.txt
+[2025-12-18 03:29:00] Edit it if needed, then run: python fic.py init
+[2025-12-18 03:29:00] Baseline created: F:\infosec\final_py\db\baseline.sha256
+[2025-12-18 03:29:00] List used: F:\infosec\final_py\critical_files.txt
+[2025-12-18 03:29:00] Scan complete. Comparing with baseline...
+[2025-12-18 03:29:00] OK: No changes detected.
+[2025-12-18 03:32:44] Baseline created: F:\infosec\final_py\db\baseline.sha256
+[2025-12-18 03:32:44] List used: F:\infosec\final_py\critical_files.txt
+[2025-12-18 03:32:44] Scan complete. Comparing with baseline...
+[2025-12-18 03:32:44] OK: No changes detected.
+[2025-12-18 03:32:55] Baseline created: F:\infosec\final_py\db\baseline.sha256
+[2025-12-18 03:32:55] List used: F:\infosec\final_py\critical_files.txt
+[2025-12-18 03:32:56] Scan complete. Comparing with baseline...
+[2025-12-18 03:32:56] OK: No changes detected.
