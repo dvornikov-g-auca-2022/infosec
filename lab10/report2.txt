@@ -1,0 +1,22 @@
+
+Георгий@DESKTOP-NRD9MEU MINGW64 ~
+$ curl http://localhost:8000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   128  100   128    0     0  45245      0 --:--:-- --:--:-- --:--:-- 64000<!DOCTYPE html>
+<html>
+<head>
+    <title>My Nginx Site</title>
+</head>
+<body>
+    <h1>My site on port 8000</h1>
+</body>
+</html>
+
+
+Георгий@DESKTOP-NRD9MEU MINGW64 ~
+$ curl http://localhost:8000/api/ping
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    15    0    15    0     0    612      0 --:--:-- --:--:-- --:--:--   625{"status":"ok"}
+

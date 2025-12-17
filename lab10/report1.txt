@@ -1,0 +1,180 @@
+root@DESKTOP-NRD9MEU:~/lab10# sudo apt install nginx
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libssh2-1 libstd-rust-1.66 libstd-rust-1.75 libstd-rust-dev
+Use 'sudo apt autoremove' to remove them.
+The following NEW packages will be installed:
+  nginx
+0 upgraded, 1 newly installed, 0 to remove and 80 not upgraded.
+Need to get 3878 B of archives.
+After this operation, 50.2 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 nginx amd64 1.18.0-6ubuntu14.7 [3878 B]
+Fetched 3878 B in 0s (21.1 kB/s)
+Selecting previously unselected package nginx.
+(Reading database ... 106257 files and directories currently installed.)
+Preparing to unpack .../nginx_1.18.0-6ubuntu14.7_amd64.deb ...
+Unpacking nginx (1.18.0-6ubuntu14.7) ...
+Setting up nginx (1.18.0-6ubuntu14.7) ...
+root@DESKTOP-NRD9MEU:~/lab10# nginx -v
+nginx version: nginx/1.18.0 (Ubuntu)
+root@DESKTOP-NRD9MEU:~/lab10# sudo systemctl start nginx
+sudo systemctl enable nginx
+Synchronizing state of nginx.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable nginx
+root@DESKTOP-NRD9MEU:~/lab10# curl http://localhost
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+root@DESKTOP-NRD9MEU:~/lab10# sudo nano /var/www/html/my_site.html
+root@DESKTOP-NRD9MEU:~/lab10# sudo nano /etc/nginx/sites-available/my_site
+root@DESKTOP-NRD9MEU:~/lab10# sudo ln -s /etc/nginx/sites-available/my_site /etc/nginx/sites-enabled/
+ln: failed to create symbolic link '/etc/nginx/sites-enabled/my_site': File exists
+root@DESKTOP-NRD9MEU:~/lab10# sudo nano /etc/nginx/sites-available/my_site
+root@DESKTOP-NRD9MEU:~/lab10# sudo nano /etc/nginx/sites-available/my_site
+root@DESKTOP-NRD9MEU:~/lab10# sudo ln -s /etc/nginx/sites-available/my_site /etc/nginx/sites-enabled/
+ln: failed to create symbolic link '/etc/nginx/sites-enabled/my_site': File exists
+root@DESKTOP-NRD9MEU:~/lab10# sudo nginx -t
+sudo systemctl reload nginx
+nginx: [emerg] open() "/etc/nginx/sites-enabled/my_site" failed (40: Too many levels of symbolic links) in /etc/nginx/nginx.conf:60
+nginx: configuration file /etc/nginx/nginx.conf test failed
+Job for nginx.service failed.
+See "systemctl status nginx.service" and "journalctl -xeu nginx.service" for details.
+root@DESKTOP-NRD9MEU:~/lab10# ls -l /etc/nginx/sites-enabled/my_site
+lrwxrwxrwx 1 root root 7 Dec 17 20:56 /etc/nginx/sites-enabled/my_site -> my_site
+root@DESKTOP-NRD9MEU:~/lab10# ls -l /etc/nginx/sites-available/my_site
+-rw-r--r-- 1 root root 163 Dec 17 20:59 /etc/nginx/sites-available/my_site
+root@DESKTOP-NRD9MEU:~/lab10# sudo rm /etc/nginx/sites-enabled/my_site
+root@DESKTOP-NRD9MEU:~/lab10# file /etc/nginx/sites-available/my_site
+/etc/nginx/sites-available/my_site: ASCII text
+root@DESKTOP-NRD9MEU:~/lab10# sudo nginx -t
+sudo systemctl reload nginx
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+root@DESKTOP-NRD9MEU:~/lab10# curl http://localhost:8000
+curl: (7) Failed to connect to localhost port 8000 after 0 ms: Connection refused
+root@DESKTOP-NRD9MEU:~/lab10# sudo systemctl status nginx --no-pager
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2025-12-17 20:54:14 +06; 8min ago
+       Docs: man:nginx(8)
+    Process: 28820 ExecReload=/usr/sbin/nginx -g daemon on; master_process on; -s reload (code=exited, status=0/SUCCESS)
+   Main PID: 26020 (nginx)
+      Tasks: 13 (limit: 19091)
+     Memory: 13.4M
+        CPU: 124ms
+     CGroup: /system.slice/nginx.service
+             ├─26020 "nginx: master process /usr/sbin/nginx -g daemon on; master_process on;"
+             ├─28821 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─28822 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─28823 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─28824 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─28825 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─28826 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─28827 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─28828 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─28829 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─28830 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─28831 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             └─28832 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+
+Dec 17 20:56:33 DESKTOP-NRD9MEU systemd[1]: Reloading A high performance web server and a reverse proxy server...
+Dec 17 20:56:33 DESKTOP-NRD9MEU nginx[26703]: nginx: [emerg] open() "/etc/nginx/sites-enabled/my_site" failed (40: Too many levels of symbolic links) in /etc/nginx/nginx.conf:60
+Dec 17 20:56:33 DESKTOP-NRD9MEU systemd[1]: nginx.service: Control process exited, code=exited, status=1/FAILURE
+Dec 17 20:56:33 DESKTOP-NRD9MEU systemd[1]: Reload failed for A high performance web server and a reverse proxy server.
+Dec 17 21:00:18 DESKTOP-NRD9MEU systemd[1]: Reloading A high performance web server and a reverse proxy server...
+Dec 17 21:00:18 DESKTOP-NRD9MEU nginx[28441]: nginx: [emerg] open() "/etc/nginx/sites-enabled/my_site" failed (40: Too many levels of symbolic links) in /etc/nginx/nginx.conf:60
+Dec 17 21:00:18 DESKTOP-NRD9MEU systemd[1]: nginx.service: Control process exited, code=exited, status=1/FAILURE
+Dec 17 21:00:18 DESKTOP-NRD9MEU systemd[1]: Reload failed for A high performance web server and a reverse proxy server.
+Dec 17 21:01:50 DESKTOP-NRD9MEU systemd[1]: Reloading A high performance web server and a reverse proxy server...
+Dec 17 21:01:50 DESKTOP-NRD9MEU systemd[1]: Reloaded A high performance web server and a reverse proxy server.
+root@DESKTOP-NRD9MEU:~/lab10# sudo ln -s /etc/nginx/sites-available/my_site /etc/nginx/sites-enabled/my_site
+ls -l /etc/nginx/sites-enabled/my_site
+lrwxrwxrwx 1 root root 34 Dec 17 21:02 /etc/nginx/sites-enabled/my_site -> /etc/nginx/sites-available/my_site
+root@DESKTOP-NRD9MEU:~/lab10# ls -l /etc/nginx/sites-enabled/my_site
+lrwxrwxrwx 1 root root 34 Dec 17 21:02 /etc/nginx/sites-enabled/my_site -> /etc/nginx/sites-available/my_site
+root@DESKTOP-NRD9MEU:~/lab10# sudo nginx -t
+sudo systemctl reload nginx
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+root@DESKTOP-NRD9MEU:~/lab10# ss -lntp | grep nginx
+LISTEN 0      511           0.0.0.0:8000      0.0.0.0:*    users:(("nginx",pid=29232,fd=9),("nginx",pid=29231,fd=9),("nginx",pid=29230,fd=9),("nginx",pid=29229,fd=9),("nginx",pid=29228,fd=9),("nginx",pid=29227,fd=9),("nginx",pid=29226,fd=9),("nginx",pid=29225,fd=9),("nginx",pid=29224,fd=9),("nginx",pid=29223,fd=9),("nginx",pid=29222,fd=9),("nginx",pid=29221,fd=9),("nginx",pid=26020,fd=9))
+LISTEN 0      511           0.0.0.0:80        0.0.0.0:*    users:(("nginx",pid=29232,fd=6),("nginx",pid=29231,fd=6),("nginx",pid=29230,fd=6),("nginx",pid=29229,fd=6),("nginx",pid=29228,fd=6),("nginx",pid=29227,fd=6),("nginx",pid=29226,fd=6),("nginx",pid=29225,fd=6),("nginx",pid=29224,fd=6),("nginx",pid=29223,fd=6),("nginx",pid=29222,fd=6),("nginx",pid=29221,fd=6),("nginx",pid=26020,fd=6))
+LISTEN 0      511              [::]:80           [::]:*    users:(("nginx",pid=29232,fd=7),("nginx",pid=29231,fd=7),("nginx",pid=29230,fd=7),("nginx",pid=29229,fd=7),("nginx",pid=29228,fd=7),("nginx",pid=29227,fd=7),("nginx",pid=29226,fd=7),("nginx",pid=29225,fd=7),("nginx",pid=29224,fd=7),("nginx",pid=29223,fd=7),("nginx",pid=29222,fd=7),("nginx",pid=29221,fd=7),("nginx",pid=26020,fd=7))
+root@DESKTOP-NRD9MEU:~/lab10# curl http://localhost:8000
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Nginx Site</title>
+</head>
+<body>
+    <h1>My site on port 8000</h1>
+</body>
+</html>
+root@DESKTOP-NRD9MEU:~/lab10# зн
+^Croot@DESKTOP-NRD9MEU:~/lab10# py
+Command 'py' not found, but can be installed with:
+apt install pythonpy
+root@DESKTOP-NRD9MEU:~/lab10# apt install pythonpy
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  libssh2-1 libstd-rust-1.66 libstd-rust-1.75 libstd-rust-dev
+Use 'apt autoremove' to remove them.
+The following NEW packages will be installed:
+  pythonpy
+0 upgraded, 1 newly installed, 0 to remove and 112 not upgraded.
+Need to get 10.2 kB of archives.
+After this operation, 49.2 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy/universe amd64 pythonpy all 0.4.11b-3ubuntu1 [10.2 kB]
+Fetched 10.2 kB in 0s (46.0 kB/s)
+Selecting previously unselected package pythonpy.
+(Reading database ... 106260 files and directories currently installed.)
+Preparing to unpack .../pythonpy_0.4.11b-3ubuntu1_all.deb ...
+Unpacking pythonpy (0.4.11b-3ubuntu1) ...
+Setting up pythonpy (0.4.11b-3ubuntu1) ...
+Processing triggers for man-db (2.10.2-1) ...
+root@DESKTOP-NRD9MEU:~/lab10# py
+root@DESKTOP-NRD9MEU:~/lab10# nano api.py
+root@DESKTOP-NRD9MEU:~/lab10# python3 /root/lab10/api.py
+127.0.0.1 - - [17/Dec/2025 21:05:20] "GET /ping HTTP/1.1" 200 -
+^CTraceback (most recent call last):
+  File "/root/lab10/api.py", line 17, in <module>
+    HTTPServer(("127.0.0.1", 5000), Handler).serve_forever()
+  File "/usr/lib/python3.10/socketserver.py", line 232, in serve_forever
+    ready = selector.select(poll_interval)
+  File "/usr/lib/python3.10/selectors.py", line 416, in select
+    fd_event_list = self._selector.poll(timeout)
+KeyboardInterrupt
+
+root@DESKTOP-NRD9MEU:~/lab10# sudo nano /etc/nginx/sites-available/my_site
+root@DESKTOP-NRD9MEU:~/lab10# sudo nginx -t
+sudo systemctl reload nginx
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+root@DESKTOP-NRD9MEU:~/lab10# python3 /root/lab10/api.py
+127.0.0.1 - - [17/Dec/2025 21:06:38] "GET /ping HTTP/1.0" 200 -
