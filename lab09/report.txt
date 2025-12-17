@@ -1,0 +1,101 @@
+Lab 9. Package management
+
+
+Package
+
+In Linux, a package is a collection of files, such as executables, libraries, configuration files, and metadata, which together provide a piece of software. Packages are bundled together with the necessary information to allow the operating system to install, update, or remove software. This ensures smooth dependency management and version control.
+
+Each package typically includes:
+Executable binaries: The compiled code to run the program.
+Libraries: Shared components that the program depends on.
+Configuration files: Settings for how the program should behave.
+Metadata: Information about the software, including version, description, dependencies, etc.
+
+Common Package Formats
+.deb (Debian-based systems like Ubuntu)
+.rpm (Red Hat-based systems like Fedora, CentOS)
+.tar.gz or .tar.bz2 (Source code or manually compiled packages)
+
+Package manager
+
+apt (Advanced Package Tool) is a package management system used in Debian-based Linux distributions (such as Ubuntu). Its primary purpose is to simplify the process of installing, updating, and removing software packages. It handles dependencies between packages and automates tasks like downloading and installing software from repositories.
+
+Common apt commands include:
+apt install [package]: Installs a package.
+apt update: Updates the package list.
+apt upgrade: Upgrades all installed packages.
+apt remove [package]: Removes a package.
+apt search [package]: Searches for a package in the repository.
+
+Example: VLC Media Player
+
+On Debian/Ubuntu (APT package manager) VLC is distributed as a .deb package for Debian-based systems. To install it, you use the APT package manager.
+
+sudo apt update        # Update package repository information
+sudo apt install vlc   # Install the VLC media player
+
+
+What happens behind the scenes:
+
+APT checks the system's package list and finds the latest vlc package from the configured repository.
+It then installs the VLC executable along with its required libraries, plugins, and configuration files.
+It also resolves and installs any dependencies that VLC requires, such as audio/video codecs.
+
+After installation, you can run VLC from the terminal with:
+
+vlc
+Or, you can find VLC in your application menu.
+
+
+Package management
+
+Package management in Linux refers to the process of installing, updating, configuring, and removing software on a system. It ensures dependencies are handled properly and provides a centralized way to manage software.
+
+
+sudo apt update
+
+
+The command sudo apt update is used in Linux systems to update the package index. It retrieves the latest information about available software packages from the repositories defined in your system's configuration files (like /etc/apt/sources.list). This ensures that your system knows about the most recent versions of packages, their dependencies, and any updates available.
+
+This command does not install or upgrade any packages—it only updates the list of available packages from the repositories.
+
+sudo apt upgrade 
+
+sudo apt upgrade is a command used in Linux to upgrade all installed packages on your system to their latest available versions, based on the information updated by the sudo apt update command. It ensures that any outdated software on your system is updated.
+
+If there are new versions of any packages, they will be downloaded and installed. If no updates are available, the command will return a message indicating that everything is up to date.
+
+sudo apt install <package name>
+
+
+sudo apt install is a command used to install a specific software package on your Linux system. When you run this command, it downloads and installs the specified package from the repositories defined in your system's configuration files (like /etc/apt/sources.list).
+
+sudo apt install curl
+
+This would install the curl package. The command will also handle any required dependencies, ensuring that all necessary libraries or tools for the package are installed.
+
+
+sudo apt remove <package name>
+
+
+sudo apt remove is a command used to uninstall a specific software package from your Linux system. When you run this command, it removes the package but typically keeps its configuration files.
+
+sudo apt remove curl
+
+This would remove the curl package but leave any configuration files behind. If you want to remove the package along with its configuration files, you can use:
+
+sudo apt purge curl
+
+sudo apt search <package name>
+
+sudo apt search is a command used to search for a specific package in the package repositories on your Linux system. It looks through the available packages and displays a list of matching results based on the search query you provide.
+
+
+apt-cache depends <package name>
+
+apt-cache depends is a command used to display the dependencies of a specified package in a Debian-based Linux system. It shows which packages are required by the given package to function properly, as well as any reverse dependencies (packages that depend on the specified package).
+
+
+Task: Try to install and explore nginx package with described commands
+
+
