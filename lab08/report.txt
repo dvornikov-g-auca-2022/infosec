@@ -1,0 +1,13 @@
+Георгий@DESKTOP-NRD9MEU MINGW64 /f/infosec (main)
+$ cd lab08
+
+Георгий@DESKTOP-NRD9MEU MINGW64 /f/infosec/lab08 (main)
+$ touch file.txt
+
+Георгий@DESKTOP-NRD9MEU MINGW64 /f/infosec/lab08 (main)
+$ vim file.txt
+
+Георгий@DESKTOP-NRD9MEU MINGW64 /f/infosec/lab08 (main)
+$
+
+i did use all of commands that were listed in lab 8. 
