@@ -1,0 +1,74 @@
+root@DESKTOP-NRD9MEU:~# cd lab06/
+root@DESKTOP-NRD9MEU:~/lab06# touch file.txt
+root@DESKTOP-NRD9MEU:~/lab06# ls -la file.txt
+-rw-r--r-- 1 root root 0 Dec 17 20:22 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# chmod 754 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# ls -la file.txt
+-rwxr-xr-- 1 root root 0 Dec 17 20:22 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# whoami
+root
+root@DESKTOP-NRD9MEU:~/lab06# id
+uid=0(root) gid=0(root) groups=0(root),1001(docker)
+root@DESKTOP-NRD9MEU:~/lab06# groups
+root docker
+root@DESKTOP-NRD9MEU:~/lab06# sudo useradd -m labuser
+root@DESKTOP-NRD9MEU:~/lab06# sudo passwd labuser
+New password:
+Retype new password:
+passwd: password updated successfully
+root@DESKTOP-NRD9MEU:~/lab06# sudo groupadd labgroup
+root@DESKTOP-NRD9MEU:~/lab06# sudo usermod -aG labgroup $(whoami)
+root@DESKTOP-NRD9MEU:~/lab06# sudo usermod -aG labgroup labuser
+root@DESKTOP-NRD9MEU:~/lab06# id $(whoami)
+uid=0(root) gid=0(root) groups=0(root),1001(docker),1004(labgroup)
+root@DESKTOP-NRD9MEU:~/lab06# id labuser
+uid=1002(labuser) gid=1003(labuser) groups=1003(labuser),1004(labgroup)
+root@DESKTOP-NRD9MEU:~/lab06# sudo chown labuser file.txt
+root@DESKTOP-NRD9MEU:~/lab06# ls -la file.txt
+-rwxr-xr-- 1 labuser root 0 Dec 17 20:22 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# sudo chgrp labgroup file.txt
+root@DESKTOP-NRD9MEU:~/lab06# ls -la file.txt
+-rwxr-xr-- 1 labuser labgroup 0 Dec 17 20:22 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# sudo chown labuser:labgroup file.txt
+root@DESKTOP-NRD9MEU:~/lab06# ls -la file.txt
+-rwxr-xr-- 1 labuser labgroup 0 Dec 17 20:22 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# echo "hello" > file.txt
+root@DESKTOP-NRD9MEU:~/lab06# cat file.txt
+hello
+root@DESKTOP-NRD9MEU:~# cd lab06/
+root@DESKTOP-NRD9MEU:~/lab06# touch file.txt
+root@DESKTOP-NRD9MEU:~/lab06# ls -la file.txt
+-rw-r--r-- 1 root root 0 Dec 17 20:22 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# chmod 754 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# ls -la file.txt
+-rwxr-xr-- 1 root root 0 Dec 17 20:22 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# whoami
+root
+root@DESKTOP-NRD9MEU:~/lab06# id
+uid=0(root) gid=0(root) groups=0(root),1001(docker)
+root@DESKTOP-NRD9MEU:~/lab06# groups
+root docker
+root@DESKTOP-NRD9MEU:~/lab06# sudo useradd -m labuser
+root@DESKTOP-NRD9MEU:~/lab06# sudo passwd labuser
+New password:
+Retype new password:
+passwd: password updated successfully
+root@DESKTOP-NRD9MEU:~/lab06# sudo groupadd labgroup
+root@DESKTOP-NRD9MEU:~/lab06# sudo usermod -aG labgroup $(whoami)
+root@DESKTOP-NRD9MEU:~/lab06# sudo usermod -aG labgroup labuser
+root@DESKTOP-NRD9MEU:~/lab06# id $(whoami)
+uid=0(root) gid=0(root) groups=0(root),1001(docker),1004(labgroup)
+root@DESKTOP-NRD9MEU:~/lab06# id labuser
+uid=1002(labuser) gid=1003(labuser) groups=1003(labuser),1004(labgroup)
+root@DESKTOP-NRD9MEU:~/lab06# sudo chown labuser file.txt
+root@DESKTOP-NRD9MEU:~/lab06# ls -la file.txt
+-rwxr-xr-- 1 labuser root 0 Dec 17 20:22 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# sudo chgrp labgroup file.txt
+root@DESKTOP-NRD9MEU:~/lab06# ls -la file.txt
+-rwxr-xr-- 1 labuser labgroup 0 Dec 17 20:22 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# sudo chown labuser:labgroup file.txt
+root@DESKTOP-NRD9MEU:~/lab06# ls -la file.txt
+-rwxr-xr-- 1 labuser labgroup 0 Dec 17 20:22 file.txt
+root@DESKTOP-NRD9MEU:~/lab06# echo "hello" > file.txt
+root@DESKTOP-NRD9MEU:~/lab06# cat file.txt
+hello
